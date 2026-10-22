@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT Ridig Sukses Berjaya | Jam Sholat Digital & Papan Neon Masjid Pekanbaru Riau</title>
+<meta name="description" content="Produsen jam sholat digital LED, running text, smart TV digital signage masjid, dan papan neon di Pekanbaru, Riau. Garansi 1 tahun, kirim ke seluruh Indonesia.">
+<meta name="keywords" content="jam sholat digital Pekanbaru, jam masjid LED Riau, running text masjid, papan neon Pekanbaru, smart TV masjid">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { DEFAULT: '#0284c7', dark: '#0f172a', light: '#e0f2fe' },
+          gold: { DEFAULT: '#f59e0b', light: '#fef3c7' }
+        },
+        fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], led: ['Orbitron', 'monospace'] }
+      }
+    }
+  }
+</script>
+<style>
+  .islamic-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+  .glow-text { text-shadow: 0 0 8px currentColor, 0 0 18px currentColor; }
+  @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+  .marquee-run { display: inline-block; white-space: nowrap; animation: marquee var(--dur, 10s) linear infinite; }
+  .led-dots {
+    background-image: radial-gradient(circle, rgba(0,0,0,.65) 35%, transparent 38%);
+    background-size: 6px 6px;
+  }
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: all .7s ease; }
+  .js .reveal.show { opacity: 1; transform: none; }
+  @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.6); } 100% { box-shadow: 0 0 0 20px rgba(37,211,102,0); } }
+  .wa-pulse { animation: pulseRing 2s infinite; }
+  ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-thumb { background: #0284c7; border-radius: 8px; }
+</style>
+</head>
+<body class="font-sans text-slate-700 bg-white antialiased">
+
+<!-- ================= NAVBAR ================= -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <a href="#beranda" class="flex items-center gap-3">
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" aria-label="Logo PT Ridig Sukses Berjaya">
+          <rect width="48" height="48" rx="12" fill="#0f172a"/>
+          <path d="M24 8l3.2 7.6 8.2.7-6.2 5.4 1.9 8-7.1-4.3-7.1 4.3 1.9-8-6.2-5.4 8.2-.7z" fill="#f59e0b"/>
+          <path d="M12 38h24" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+          <path d="M16 42h16" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="leading-tight">
+          <div id="brandTop" class="font-extrabold text-sm sm:text-base text-white transition-colors">PT RIDIG</div>
+          <div id="brandBot" class="text-[11px] sm:text-xs font-semibold tracking-wider text-gold transition-colors">SUKSES BERJAYA</div>
+        </div>
+      </a>
+
+      <nav class="hidden xl:flex items-center gap-6 text-sm font-semibold" id="navLinks">
+        <a href="#beranda" class="nav-link">Beranda</a>
+        <a href="#katalog" class="nav-link">Katalog Produk</a>
+        <a href="#simulasi" class="nav-link">Simulasi Running Text</a>
+        <a href="#kalkulator" class="nav-link">Kalkulator Ukuran</a>
+        <a href="#wilayah" class="nav-link">Wilayah Layanan</a>
+        <a href="#portofolio" class="nav-link">Portofolio</a>
+        <a href="#kontak" class="nav-link">Kontak</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="#" data-wa class="hidden sm:inline-flex items-center gap-2 bg-gold hover:bg-amber-600 text-slate-900 font-bold text-sm px-4 py-2.5 rounded-full shadow-lg transition">
+          <i data-lucide="message-circle" class="w-4 h-4"></i> Konsultasi WhatsApp
+        </a>
+        <button id="menuBtn" class="xl:hidden p-2 rounded-lg text-white" aria-label="Buka menu">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="hidden xl:hidden bg-brand-dark/98 backdrop-blur border-t border-white/10">
+    <div class="px-4 py-4 space-y-1 text-white font-semibold">
+      <a href="#beranda" class="block px-3 py-3 rounded-lg hover:bg-white/10">Beranda</a>
+      <a href="#katalog" class="block px-3 py-3 rounded-lg hover:bg-white/10">Katalog Produk</a>
+      <a href="#simulasi" class="block px-3 py-3 rounded-lg hover:bg-white/10">Simulasi Running Text</a>
+      <a href="#kalkulator" class="block px-3 py-3 rounded-lg hover:bg-white/10">Kalkulator Ukuran</a>
+      <a href="#wilayah" class="block px-3 py-3 rounded-lg hover:bg-white/10">Wilayah Layanan</a>
+      <a href="#portofolio" class="block px-3 py-3 rounded-lg hover:bg-white/10">Portofolio</a>
+      <a href="#kontak" class="block px-3 py-3 rounded-lg hover:bg-white/10">Kontak</a>
+      <a href="#" data-wa class="mt-2 flex items-center justify-center gap-2 bg-gold text-slate-900 font-bold px-4 py-3 rounded-full">
+        <i data-lucide="message-circle" class="w-5 h-5"></i> Konsultasi WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section id="beranda" class="relative bg-brand-dark text-white pt-28 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+  <div class="absolute inset-0 islamic-pattern"></div>
+  <div class="absolute -top-32 -right-32 w-[28rem] h-[28rem] bg-brand/30 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-40 -left-32 w-[28rem] h-[28rem] bg-gold/10 rounded-full blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-gold text-xs font-bold px-3 py-1.5 rounded-full mb-5">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Workshop Pekanbaru, Riau · Kirim ke Seluruh Indonesia
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+        Pusat Papan Digital &amp; Jam Sholat Digital Masjid Terpercaya di <span class="text-gold">Riau &amp; Seluruh Indonesia</span>
+      </h1>
+      <p class="mt-5 text-slate-300 text-base sm:text-lg max-w-xl">
+        Akurat sesuai standar Kemenag RI, desain elegan, bergaransi resmi 1 tahun, dan dapat dikontrol via HP Android Wi-Fi.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-2.5">
+        <span class="badge"><i data-lucide="shield-check" class="w-4 h-4 text-gold"></i> Garansi 1 Tahun</span>
+        <span class="badge"><i data-lucide="hand-coins" class="w-4 h-4 text-gold"></i> Bisa Bayar Saat Barang Tiba / COD Riau</span>
+        <span class="badge"><i data-lucide="settings-2" class="w-4 h-4 text-gold"></i> Gratis Setting &amp; Fitur Lengkap</span>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="#" data-wa class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-amber-600 text-slate-900 font-extrabold px-7 py-4 rounded-full shadow-xl shadow-gold/20 transition">
+          <i data-lucide="message-circle" class="w-5 h-5"></i> Pesan Sekarang via WA
+        </a>
+        <a href="#katalog" class="inline-flex items-center justify-center gap-2 border-2 border-white/30 hover:bg-white/10 font-bold px-7 py-4 rounded-full transition">
+          Lihat Katalog <i data-lucide="arrow-down" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero mock LED clock -->
+    <div class="relative">
+      <div class="bg-slate-900 border-4 border-slate-700 rounded-2xl p-5 shadow-2xl shadow-brand/30">
+        <div class="flex items-center justify-between text-xs text-slate-400 mb-3">
+          <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> MASJID AL-IKHLAS (Contoh)</span>
+          <span id="heroDate" class="font-led"></span>
+        </div>
+        <div class="text-center">
+          <div id="heroClock" class="font-led text-5xl sm:text-6xl text-red-500 glow-text">00:00:00</div>
+        </div>
+        <div class="grid grid-cols-5 gap-2 mt-5 text-center">
+          <div class="bg-black/60 rounded-lg py-2"><div class="text-[10px] text-slate-400">SUBUH</div><div class="font-led text-amber-400 text-sm sm:text-base glow-text">04:48</div></div>
+          <div class="bg-black/60 rounded-lg py-2"><div class="text-[10px] text-slate-400">DZUHUR</div><div class="font-led text-amber-400 text-sm sm:text-base glow-text">12:05</div></div>
+          <div class="bg-black/60 rounded-lg py-2"><div class="text-[10px] text-slate-400">ASHAR</div><div class="font-led text-amber-400 text-sm sm:text-base glow-text">15:18</div></div>
+          <div class="bg-black/60 rounded-lg py-2"><div class="text-[10px] text-slate-400">MAGHRIB</div><div class="font-led text-amber-400 text-sm sm:text-base glow-text">18:08</div></div>
+          <div class="bg-black/60 rounded-lg py-2"><div class="text-[10px] text-slate-400">ISYA</div><div class="font-led text-amber-400 text-sm sm:text-base glow-text">19:17</div></div>
+        </div>
+        <p class="text-[11px] text-slate-500 text-center mt-3">*Tampilan ilustrasi. Jam berjalan mengikuti waktu perangkat Anda.</p>
+      </div>
+      <div class="absolute -bottom-5 -left-3 bg-gold text-slate-900 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-xl flex items-center gap-2">
+        <i data-lucide="smartphone" class="w-4 h-4"></i> Kontrol via HP Android
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KEUNGGULAN ================= -->
+<section id="keunggulan" class="py-16 lg:py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <span class="text-brand font-bold text-sm tracking-widest uppercase">Mengapa Kami</span>
+      <h2 class="mt-2 text-2xl sm:text-4xl font-extrabold text-brand-dark">Keunggulan Utama PT Ridig Sukses Berjaya</h2>
+      <div class="w-16 h-1 bg-gold rounded mx-auto mt-4"></div>
+    </div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="card-v reveal">
+        <div class="icon-box"><i data-lucide="calendar-check" class="w-7 h-7"></i></div>
+        <h3>Jadwal Sholat Akurat 100 Tahun</h3>
+        <p>Data jadwal sholat otomatis mengikuti standar Kemenag RI untuk 100 tahun ke depan, tanpa perlu input ulang.</p>
+      </div>
+      <div class="card-v reveal">
+        <div class="icon-box"><i data-lucide="wifi" class="w-7 h-7"></i></div>
+        <h3>Pengaturan Mudah via Android Wi-Fi</h3>
+        <p>Atur jam, iqomah, running text, dan tampilan langsung dari HP Android lewat Wi-Fi. Tanpa repot pakai remote.</p>
+      </div>
+      <div class="card-v reveal">
+        <div class="icon-box"><i data-lucide="wrench" class="w-7 h-7"></i></div>
+        <h3>Garansi Resmi &amp; Teknisi Lokal Riau</h3>
+        <p>Garansi resmi 1 tahun dengan dukungan layanan teknisi lokal di Riau untuk perawatan dan perbaikan.</p>
+      </div>
+      <div class="card-v reveal">
+        <div class="icon-box"><i data-lucide="gem" class="w-7 h-7"></i></div>
+        <h3>Komponen Premium</h3>
+        <p>Rangka aluminium kokoh, LED tahan lama, dan akrilik berkualitas untuk hasil awet dan tampilan jernih.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KATALOG ================= -->
+<section id="katalog" class="py-16 lg:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <span class="text-brand font-bold text-sm tracking-widest uppercase">Katalog Produk</span>
+      <h2 class="mt-2 text-2xl sm:text-4xl font-extrabold text-brand-dark">Solusi Digital untuk Masjid &amp; Bisnis Anda</h2>
+      <div class="w-16 h-1 bg-gold rounded mx-auto mt-4"></div>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-2 gap-8">
+      <!-- Produk 1 -->
+      <article class="product reveal">
+        <div class="product-img bg-gradient-to-br from-slate-900 to-slate-800">
+          <div class="bg-black rounded-lg p-3 w-4/5 border border-slate-600">
+            <div class="font-led text-red-500 text-3xl text-center glow-text">12:05</div>
+            <div class="grid grid-cols-5 gap-1 mt-2 text-center font-led text-amber-400 text-[10px]">
+              <span>04:48</span><span>12:05</span><span>15:18</span><span>18:08</span><span>19:17</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="tag">Best Seller</span>
+          <h3 class="text-xl font-extrabold text-brand-dark mt-2">Jam Sholat LED 7-Segment + Custom Background</h3>
+          <p class="mt-2 text-sm text-slate-600">Jam sholat digital dengan angka 7-segment terang dan jelas, dilengkapi background custom foto masjid atau kaligrafi sesuai identitas masjid Anda.</p>
+          <ul class="feat-list">
+            <li>Jadwal sholat otomatis standar Kemenag RI</li>
+            <li>Alarm iqomah &amp; mode Jumat</li>
+            <li>Setting via HP Android Wi-Fi</li>
+            <li>Rangka aluminium, akrilik premium</li>
+          </ul>
+          <a href="#" data-wa data-produk="Jam Sholat LED 7-Segment + Custom Background" class="btn-wa">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Tanya &amp; Pesan via WA
+          </a>
+        </div>
+      </article>
+
+      <!-- Produk 2 -->
+      <article class="product reveal">
+        <div class="product-img bg-gradient-to-br from-slate-900 to-slate-800">
+          <div class="bg-black rounded-lg p-3 w-4/5 border border-slate-600 overflow-hidden">
+            <div class="font-led text-amber-400 text-sm whitespace-nowrap glow-text"><span class="marquee-run" style="--dur:9s">★ SELAMAT DATANG DI MASJID ★ LURUSKAN &amp; RAPATKAN SHAF ★</span></div>
+            <div class="grid grid-cols-3 gap-1 mt-2 text-[10px] font-bold text-center">
+              <span class="bg-red-600/80 rounded py-0.5 text-white">P10 Single</span>
+              <span class="bg-emerald-600/80 rounded py-0.5 text-white">P5 RGB</span>
+              <span class="bg-sky-600/80 rounded py-0.5 text-white">Full Color</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="tag">Running Text</span>
+          <h3 class="text-xl font-extrabold text-brand-dark mt-2">Jam Masjid Running Text LED (P10 Single Color &amp; P5 Full Color RGB)</h3>
+          <p class="mt-2 text-sm text-slate-600">Jam sholat dengan layar running text untuk pengumuman, kajian, dan info kegiatan. Tersedia pilihan P10 single color (hemat) dan P5 full color RGB (visual tajam).</p>
+          <ul class="feat-list">
+            <li>Tulis &amp; ubah teks dari HP Android</li>
+            <li>Banyak efek &amp; kecepatan teks</li>
+            <li>Tahan di area semi-outdoor</li>
+            <li>Ukuran dapat disesuaikan kebutuhan</li>
+          </ul>
+          <a href="#" data-wa data-produk="Jam Masjid Running Text LED (P10 / P5 RGB)" class="btn-wa">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Tanya &amp; Pesan via WA
+          </a>
+        </div>
+      </article>
+
+      <!-- Produk 3 -->
+      <article class="product reveal">
+        <div class="product-img bg-gradient-to-br from-brand-dark to-brand">
+          <div class="bg-slate-950 rounded-lg w-4/5 aspect-video border-4 border-slate-700 p-3 flex flex-col">
+            <div class="flex justify-between text-[9px] text-slate-400"><span>JWS · Kas · Murottal</span><span class="text-gold">LIVE</span></div>
+            <div class="flex-1 grid grid-cols-3 gap-1 mt-1.5">
+              <div class="bg-brand/40 rounded col-span-2 flex items-center justify-center text-white text-xs font-bold">Slide Agenda</div>
+              <div class="bg-gold/30 rounded flex items-center justify-center text-gold text-xs font-bold">Jadwal</div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="tag">Digital Signage</span>
+          <h3 class="text-xl font-extrabold text-brand-dark mt-2">Smart TV JWS Controller (Digital Signage Masjid All-in-One)</h3>
+          <p class="mt-2 text-sm text-slate-600">Satu layar untuk semua kebutuhan informasi masjid: jadwal sholat, laporan kas masjid, murottal, dan slide agenda kegiatan.</p>
+          <ul class="feat-list">
+            <li>Jadwal sholat &amp; hitung mundur iqomah</li>
+            <li>Laporan kas masjid transparan</li>
+            <li>Murottal otomatis sebelum waktu sholat</li>
+            <li>Slide agenda, poster &amp; pengumuman</li>
+          </ul>
+          <a href="#" data-wa data-produk="Smart TV JWS Controller (Digital Signage Masjid)" class="btn-wa">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Tanya &amp; Pesan via WA
+          </a>
+        </div>
+      </article>
+
+      <!-- Produk 4 -->
+      <article class="product reveal">
+        <div class="product-img bg-gradient-to-br from-slate-900 to-indigo-950">
+          <div class="rounded-xl border-4 border-pink-400 px-6 py-4 shadow-[0_0_25px_#f472b6,inset_0_0_15px_#f472b6]">
+            <div class="font-led text-pink-300 text-xl glow-text text-center">MASJID NURUL HUDA</div>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="tag">Custom</span>
+          <h3 class="text-xl font-extrabold text-brand-dark mt-2">Paket Neon Box &amp; Papan Nama Masjid Custom</h3>
+          <p class="mt-2 text-sm text-slate-600">Papan nama masjid, mushola, dan usaha dengan neon box atau neon flex. Desain, ukuran, dan warna sepenuhnya mengikuti permintaan Anda.</p>
+          <ul class="feat-list">
+            <li>Neon box, neon flex, &amp; huruf timbul</li>
+            <li>Desain gratis sesuai identitas</li>
+            <li>Nyala terang, hemat listrik</li>
+            <li>Bisa dipasang indoor &amp; outdoor</li>
+          </ul>
+          <a href="#" data-wa data-produk="Paket Neon Box & Papan Nama Masjid Custom" class="btn-wa">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Tanya &amp; Pesan via WA
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIMULATOR RUNNING TEXT ================= -->
+<section id="simulasi" class="py-16 lg:py-24 bg-brand-dark text-white relative overflow-hidden">
+  <div class="absolute inset-0 islamic-pattern"></div>
+  <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <span class="text-gold font-bold text-sm tracking-widest uppercase">Fitur Interaktif</span>
+      <h2 class="mt-2 text-2xl sm:text-4xl font-extrabold">Simulator Running Text Masjid</h2>
+      <p class="mt-3 text-slate-300">Pengurus DKM bisa mencoba langsung tampilan pengumuman di layar LED virtual sebelum memesan.</p>
+    </div>
+
+    <div class="mt-10 bg-slate-900/80 border border-white/10 rounded-2xl p-5 sm:p-8">
+      <!-- Layar -->
+      <div class="rounded-xl bg-black border-4 border-slate-700 overflow-hidden relative h-24 sm:h-32 flex items-center shadow-inner" id="ledScreen">
+        <div class="absolute inset-0 led-dots opacity-60 pointer-events-none z-10"></div>
+        <div id="ledText" class="marquee-run font-led text-3xl sm:text-5xl text-amber-400 glow-text px-4" style="--dur:10s">
+          SELAMAT DATANG DI MASJID AL-IKHLAS · LURUSKAN DAN RAPATKAN SHAF
+        </div>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-5">
+        <div class="md:col-span-2">
+          <label class="lbl" for="simInput">Teks Pengumuman (maks. 150 karakter)</label>
+          <textarea id="simInput" maxlength="150" rows="2" class="inp" placeholder="Contoh: Kajian Ba'da Maghrib bersama Ustadz ... Sabtu ini">SELAMAT DATANG DI MASJID AL-IKHLAS · LURUSKAN DAN RAPATKAN SHAF</textarea>
+          <div class="text-right text-xs text-slate-400 mt-1"><span id="simCount">0</span>/150</div>
+        </div>
+        <div>
+          <label class="lbl">Warna LED</label>
+          <div class="flex gap-3" id="colorPicker">
+            <button data-c="#fbbf24" class="clr ring-2 ring-white" style="background:#fbbf24" aria-label="Kuning"></button>
+            <button data-c="#ef4444" class="clr" style="background:#ef4444" aria-label="Merah"></button>
+            <button data-c="#22c55e" class="clr" style="background:#22c55e" aria-label="Hijau"></button>
+            <button data-c="#38bdf8" class="clr" style="background:#38bdf8" aria-label="Biru"></button>
+            <button data-c="#f9fafb" class="clr" style="background:#f9fafb" aria-label="Putih"></button>
+            <button data-c="#e879f9" class="clr" style="background:#e879f9" aria-label="Ungu"></button>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">P10 single color tersedia warna tertentu; P5 RGB mendukung full color.</p>
+        </div>
+        <div>
+          <label class="lbl" for="simSpeed">Kecepatan: <span id="simSpeedVal" class="text-gold font-bold">Sedang</span></label>
+          <input type="range" id="simSpeed" min="1" max="3" value="2" class="w-full accent-amber-500 mt-2">
+          <div class="flex justify-between text-xs text-slate-400"><span>Lambat</span><span>Sedang</span><span>Cepat</span></div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-between items-center">
+        <button id="simPreset" class="text-sm font-semibold text-gold hover:underline flex items-center gap-1.5"><i data-lucide="shuffle" class="w-4 h-4"></i> Coba contoh teks lain</button>
+        <a href="#" id="simWa" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-full transition">
+          <i data-lucide="send" class="w-4 h-4"></i> Pesan Running Text dengan Teks Ini
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KALKULATOR ================= -->
+<section id="kalkulator" class="py-16 lg:py-24 bg-slate-50">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <span class="text-brand font-bold text-sm tracking-widest uppercase">Fitur Interaktif</span>
+      <h2 class="mt-2 text-2xl sm:text-4xl font-extrabold text-brand-dark">Kalkulator Rekomendasi Ukuran</h2>
+      <p class="mt-3 text-slate-600">Pilih luas ruangan masjid Anda, kami sarankan tipe dan ukuran yang pas.</p>
+    </div>
+
+    <div class="mt-10 grid lg:grid-cols-5 gap-6">
+      <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6">
+        <label class="lbl-d">1. Pilih ukuran masjid / mushola</label>
+        <div class="space-y-2.5 mt-3" id="sizeOptions">
+          <button data-size="kecil" class="size-opt"><i data-lucide="home" class="w-5 h-5"></i><div><b>Mushola / Langgar</b><small>Kurang dari 5 x 5 m</small></div></button>
+          <button data-size="sedang" class="size-opt"><i data-lucide="building" class="w-5 h-5"></i><div><b>Masjid Sedang</b><small>Sekitar 10 x 10 m</small></div></button>
+          <button data-size="besar" class="size-opt"><i data-lucide="landmark" class="w-5 h-5"></i><div><b>Masjid Besar</b><small>Sekitar 15 x 15 m</small></div></button>
+          <button data-size="agung" class="size-opt"><i data-lucide="castle" class="w-5 h-5"></i><div><b>Masjid Agung</b><small>Lebih dari 20 x 20 m</small></div></button>
+        </div>
+
+        <label class="lbl-d mt-6 block">2. Kebutuhan utama</label>
+        <select id="needSel" class="w-full mt-2 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand">
+          <option value="jws">Jadwal sholat saja</option>
+          <option value="running">Jadwal sholat + running text</option>
+          <option value="tv">Informasi lengkap (kas, agenda, murottal)</option>
+        </select>
+      </div>
+
+      <div class="lg:col-span-3 bg-brand-dark text-white rounded-2xl shadow-lg p-6 flex flex-col" id="resultBox">
+        <div id="resultEmpty" class="m-auto text-center text-slate-300">
+          <i data-lucide="ruler" class="w-12 h-12 mx-auto text-gold mb-3"></i>
+          <p>Pilih ukuran masjid di sebelah kiri untuk melihat rekomendasi.</p>
+        </div>
+        <div id="resultBody" class="hidden">
+          <span class="text-xs font-bold bg-gold text-slate-900 px-3 py-1 rounded-full">REKOMENDASI UNTUK ANDA</span>
+          <h3 id="resTitle" class="text-xl sm:text-2xl font-extrabold mt-3"></h3>
+          <p id="resDesc" class="text-slate-300 text-sm mt-2"></p>
+          <div class="grid sm:grid-cols-2 gap-3 mt-5">
+            <div class="bg-white/10 rounded-xl p-4"><div class="text-xs text-slate-400">Ukuran Saran</div><div id="resSize" class="font-bold text-gold"></div></div>
+            <div class="bg-white/10 rounded-xl p-4"><div class="text-xs text-slate-400">Tipe Panel / Layar</div><div id="resType" class="font-bold text-gold"></div></div>
+            <div class="bg-white/10 rounded-xl p-4"><div class="text-xs text-slate-400">Jarak Baca Ideal</div><div id="resDist" class="font-bold text-gold"></div></div>
+            <div class="bg-white/10 rounded-xl p-4"><div class="text-xs text-slate-400">Posisi Pemasangan</div><div id="resPos" class="font-bold text-gold"></div></div>
+          </div>
+          <p class="text-xs text-slate-400 mt-4">*Saran awal. Ukuran final menyesuaikan kondisi dinding &amp; survei. Harga dikonfirmasi tim kami via WhatsApp.</p>
+          <a href="#" id="resWa" class="mt-5 inline-flex items-center gap-2 bg-gold hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-full transition">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Minta Penawaran Sesuai Rekomendasi
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WILAYAH LAYANAN ================= -->
+<section id="wilayah" class="py-16 lg:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <span class="text-brand font-bold text-sm tracking-widest uppercase">Wilayah Layanan</span>
+      <h2 class="mt-2 text-2xl sm:text-4xl font-extrabold text-brand-dark">Melayani Seluruh Riau &amp; Pengiriman ke Seluruh Indonesia</h2>
+      <p class="mt-3 text-slate-600">Jasa pemasangan, servis, dan teknisi tersedia di 12 kabupaten/kota Provinsi Riau. Untuk luar Riau, pesanan dikirim aman via ekspedisi dengan panduan pemasangan dan pengaturan online.</p>
+      <div class="w-16 h-1 bg-gold rounded mx-auto mt-4"></div>
+    </div>
+
+    <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="riauGrid"></div>
+
+    <div class="mt-10 bg-gradient-to-r from-brand to-brand-dark text-white rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row gap-6 items-center">
+      <i data-lucide="truck" class="w-14 h-14 text-gold shrink-0"></i>
+      <div class="flex-1 text-center md:text-left">
+        <h3 class="text-xl font-extrabold">Pengiriman ke Seluruh Provinsi di Indonesia</h3>
+        <p class="text-slate-200 text-sm mt-1">Sumatera, Jawa, Kalimantan, Sulawesi, Bali &amp; Nusa Tenggara, Maluku, hingga Papua. Barang dikemas aman (packing kayu/bubble wrap) dan dapat diasuransikan.</p>
+        <div class="mt-4 flex flex-wrap justify-center md:justify-start gap-2 text-xs font-semibold">
+          <span class="bg-white/15 px-3 py-1 rounded-full">Sumatera</span><span class="bg-white/15 px-3 py-1 rounded-full">Jawa</span><span class="bg-white/15 px-3 py-1 rounded-full">Kalimantan</span><span class="bg-white/15 px-3 py-1 rounded-full">Sulawesi</span><span class="bg-white/15 px-3 py-1 rounded-full">Bali &amp; Nusra</span><span class="bg-white/15 px-3 py-1 rounded-full">Maluku</span><span class="bg-white/15 px-3 py-1 rounded-full">Papua</span>
+        </div>
+      </div>
+      <a href="#" data-wa data-produk="Pengiriman ke luar Riau" class="shrink-0 inline-flex items-center gap-2 bg-gold text-slate-900 font-bold px-6 py-3 rounded-full hover:bg-amber-600 transition">
+        Cek Ongkir via WA <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PORTOFOLIO & TESTIMONI ================= -->
+<section id="portofolio" class="py-16 lg:py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <span class="text-brand font-bold text-sm tracking-widest uppercase">Portofolio</span>
+      <h2 class="mt-2 text-2xl sm:text-4xl font-extrabold text-brand-dark">Galeri Pemasangan di Berbagai Masjid</h2>
+      <div class="w-16 h-1 bg-gold rounded mx-auto mt-4"></div>
+      <p class="text-xs text-slate-500 mt-3">*Placeholder. Ganti dengan foto proyek asli Anda (tag &lt;img&gt; sudah disiapkan pada komentar kode).</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="galleryGrid"></div>
+
+    <div class="mt-16 text-center max-w-2xl mx-auto">
+      <h3 class="text-xl sm:text-2xl font-extrabold text-brand-dark">Apa Kata Pengurus Masjid</h3>
+    </div>
+    <div class="mt-8 grid md:grid-cols-3 gap-6">
+      <figure class="bg-white rounded-2xl p-6 shadow-md">
+        <div class="flex text-gold mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+        <blockquote class="text-sm text-slate-600">"Contoh testimoni: Pengaturan lewat HP sangat mudah, jadwal sholat akurat. Pengurus DKM kami tidak kesulitan sama sekali."</blockquote>
+        <figcaption class="mt-4 text-sm font-bold text-brand-dark">Nama Pengurus DKM <span class="block font-normal text-xs text-slate-500">Masjid ... · Riau</span></figcaption>
+      </figure>
+      <figure class="bg-white rounded-2xl p-6 shadow-md">
+        <div class="flex text-gold mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+        <blockquote class="text-sm text-slate-600">"Contoh testimoni: Barang sampai aman, tampilan elegan, dan ada panduan setting online dari tim. Terima kasih."</blockquote>
+        <figcaption class="mt-4 text-sm font-bold text-brand-dark">Nama Pengurus DKM <span class="block font-normal text-xs text-slate-500">Masjid ... · Luar Riau</span></figcaption>
+      </figure>
+      <figure class="bg-white rounded-2xl p-6 shadow-md">
+        <div class="flex text-gold mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+        <blockquote class="text-sm text-slate-600">"Contoh testimoni: Neon box papan nama masjid hasilnya rapi dan terang. Pemasangan cepat oleh teknisi."</blockquote>
+        <figcaption class="mt-4 text-sm font-bold text-brand-dark">Nama Pengurus DKM <span class="block font-normal text-xs text-slate-500">Masjid ... · Pekanbaru</span></figcaption>
+      </figure>
+    </div>
+    <p class="text-center text-xs text-slate-400 mt-4">*Testimoni di atas adalah contoh. Ganti dengan testimoni asli pelanggan Anda.</p>
+  </div>
+</section>
+
+<!-- ================= CTA STRIP ================= -->
+<section class="bg-gold py-10">
+  <div class="max-w-5xl mx-auto px-4 text-center">
+    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900">Siap Memasang Jam Sholat Digital di Masjid Anda?</h2>
+    <p class="text-slate-800 mt-2">Konsultasi gratis, survei &amp; penawaran tanpa kewajiban membeli.</p>
+    <a href="#" data-wa class="mt-5 inline-flex items-center gap-2 bg-brand-dark text-white font-bold px-8 py-4 rounded-full hover:bg-slate-800 transition">
+      <i data-lucide="message-circle" class="w-5 h-5"></i> Konsultasi Gratis via WhatsApp
+    </a>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER / KONTAK ================= -->
+<footer id="kontak" class="bg-brand-dark text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <svg width="40" height="40" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="12" fill="#0284c7"/><path d="M24 8l3.2 7.6 8.2.7-6.2 5.4 1.9 8-7.1-4.3-7.1 4.3 1.9-8-6.2-5.4 8.2-.7z" fill="#f59e0b"/><path d="M12 38h24" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+        <div class="font-extrabold text-white leading-tight">PT Ridig<br><span class="text-gold text-sm">Sukses Berjaya</span></div>
+      </div>
+      <p class="text-sm">Produsen papan neon, jam sholat digital LED, running text, dan smart TV digital signage masjid. Berbasis di Pekanbaru, Riau, melayani pemesanan ke seluruh Indonesia.</p>
+    </div>
+
+    <div>
+      <h4 class="text-white font-bold mb-4">Menu</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a class="hover:text-gold" href="#beranda">Beranda</a></li>
+        <li><a class="hover:text-gold" href="#katalog">Katalog Produk</a></li>
+        <li><a class="hover:text-gold" href="#simulasi">Simulasi Running Text</a></li>
+        <li><a class="hover:text-gold" href="#kalkulator">Kalkulator Ukuran</a></li>
+        <li><a class="hover:text-gold" href="#wilayah">Wilayah Layanan</a></li>
+        <li><a class="hover:text-gold" href="#portofolio">Portofolio</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
+      <ul class="space-y-3 text-sm">
+        <li class="flex gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-gold mt-0.5 shrink-0"></i><span><b class="text-white">Workshop:</b> [Isi alamat lengkap workshop], Pekanbaru, Riau</span></li>
+        <li class="flex gap-2"><i data-lucide="phone" class="w-4 h-4 text-gold mt-0.5 shrink-0"></i><a data-wa href="#" class="hover:text-gold" id="footPhone">WhatsApp: +62 812-0000-0000</a></li>
+        <li class="flex gap-2"><i data-lucide="mail" class="w-4 h-4 text-gold mt-0.5 shrink-0"></i><span>info@domainanda.co.id</span></li>
+        <li class="flex gap-2"><i data-lucide="clock" class="w-4 h-4 text-gold mt-0.5 shrink-0"></i><span>Senin – Sabtu, 08.00 – 17.00 WIB</span></li>
+      </ul>
+      <h4 class="text-white font-bold mt-6 mb-2">Legalitas</h4>
+      <ul class="text-xs space-y-1">
+        <li>Perseroan Terbatas (PT) · NIB: [isi nomor NIB]</li>
+        <li>NPWP: [isi nomor NPWP]</li>
+        <li>SK Kemenkumham: [isi nomor SK]</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-white font-bold mb-4">Lokasi</h4>
+      <div class="rounded-xl overflow-hidden border border-white/10 h-48">
+        <iframe title="Peta lokasi workshop PT Ridig Sukses Berjaya" class="w-full h-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Pekanbaru,+Riau&output=embed"></iframe>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">*Ganti link peta dengan lokasi workshop asli (Google Maps → Bagikan → Sematkan peta).</p>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5 text-center text-xs text-slate-400">
+    &copy; <span id="year"></span> PT Ridig Sukses Berjaya. Seluruh hak cipta dilindungi.
+  </div>
+</footer>
+
+<!-- Floating WA -->
+<a href="#" data-wa id="floatWa" aria-label="Chat WhatsApp" class="wa-pulse fixed bottom-5 right-5 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-2xl hover:scale-110 transition">
+  <svg viewBox="0 0 32 32" class="w-8 h-8 sm:w-9 sm:h-9 fill-current"><path d="M16.04 3C9.4 3 4 8.4 4 15.03c0 2.12.56 4.19 1.62 6.02L4 29l8.1-2.1a12 12 0 0 0 5.94 1.57h.01C24.7 28.47 30 23.07 30 16.44 30 9.8 24.68 3 16.04 3zm0 22.37h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-4.8 1.25 1.28-4.68-.24-.38a9.93 9.93 0 0 1-1.52-5.3c0-5.48 4.46-9.94 9.95-9.94 5.3 0 9.95 4.02 9.95 9.96 0 5.48-4.46 9.68-9.21 9.68zm5.45-7.44c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.88.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+</a>
+
+<style>
+  .nav-link { color:#fff; transition:color .2s; } .nav-link:hover { color:#f59e0b; }
+  .badge { display:inline-flex; align-items:center; gap:.4rem; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); padding:.45rem .8rem; border-radius:9999px; font-size:.78rem; font-weight:600; }
+  .card-v { background:#fff; border-radius:1rem; padding:1.5rem; box-shadow:0 4px 20px rgba(15,23,42,.06); border-top:4px solid #0284c7; transition:.3s; }
+  .card-v:hover { transform:translateY(-6px); box-shadow:0 14px 30px rgba(2,132,199,.18); border-top-color:#f59e0b; }
+  .card-v h3 { font-weight:800; color:#0f172a; margin-top:1rem; font-size:1.05rem; }
+  .card-v p { font-size:.88rem; margin-top:.5rem; color:#475569; }
+  .icon-box { width:3.5rem; height:3.5rem; border-radius:.9rem; background:#e0f2fe; color:#0284c7; display:flex; align-items:center; justify-content:center; }
+  .product { background:#fff; border:1px solid #e2e8f0; border-radius:1.25rem; overflow:hidden; box-shadow:0 4px 20px rgba(15,23,42,.05); transition:.3s; }
+  .product:hover { box-shadow:0 18px 40px rgba(2,132,199,.18); transform:translateY(-4px); }
+  .product-img { height:12rem; display:flex; align-items:center; justify-content:center; }
+  .tag { display:inline-block; background:#fef3c7; color:#b45309; font-size:.7rem; font-weight:800; padding:.2rem .65rem; border-radius:9999px; text-transform:uppercase; letter-spacing:.05em; }
+  .feat-list { margin-top:.9rem; space-y:.3rem; font-size:.85rem; }
+  .feat-list li { position:relative; padding-left:1.4rem; margin-top:.35rem; color:#334155; }
+  .feat-list li::before { content:"✓"; position:absolute; left:0; color:#0284c7; font-weight:800; }
+  .btn-wa { margin-top:1.25rem; display:inline-flex; align-items:center; gap:.5rem; background:#25D366; color:#fff; font-weight:700; font-size:.88rem; padding:.7rem 1.3rem; border-radius:9999px; transition:.2s; }
+  .btn-wa:hover { background:#1ebe5a; transform:scale(1.03); }
+  .lbl { display:block; font-size:.85rem; font-weight:600; color:#cbd5e1; margin-bottom:.4rem; }
+  .lbl-d { font-size:.9rem; font-weight:700; color:#0f172a; }
+  .inp { width:100%; background:#0f172a; border:1px solid #334155; border-radius:.75rem; padding:.75rem 1rem; color:#fff; font-size:.9rem; }
+  .inp:focus { outline:2px solid #f59e0b; }
+  .clr { width:2.2rem; height:2.2rem; border-radius:9999px; border:2px solid transparent; transition:.2s; }
+  .clr:hover { transform:scale(1.15); }
+  .size-opt { width:100%; display:flex; align-items:center; gap:.8rem; text-align:left; padding:.8rem 1rem; border:2px solid #e2e8f0; border-radius:.9rem; transition:.2s; color:#0f172a; }
+  .size-opt small { display:block; color:#64748b; font-size:.75rem; }
+  .size-opt svg { color:#0284c7; }
+  .size-opt:hover { border-color:#0284c7; }
+  .size-opt.active { border-color:#0284c7; background:#e0f2fe; }
+  .region { background:#fff; border:1px solid #e2e8f0; border-radius:.9rem; padding:1rem; display:flex; align-items:center; gap:.7rem; font-weight:700; color:#0f172a; font-size:.92rem; transition:.25s; }
+  .region:hover { border-color:#0284c7; background:#e0f2fe; transform:translateY(-3px); }
+  .region svg { color:#f59e0b; flex-shrink:0; }
+  .gal { position:relative; border-radius:1rem; overflow:hidden; aspect-ratio:1/1; display:flex; align-items:flex-end; color:#fff; cursor:pointer; }
+  .gal:nth-child(3n+1) { background:linear-gradient(135deg,#0f172a,#0284c7); }
+  .gal:nth-child(3n+2) { background:linear-gradient(135deg,#1e293b,#f59e0b); }
+  .gal:nth-child(3n) { background:linear-gradient(135deg,#0c4a6e,#0f172a); }
+  .gal .cap { width:100%; padding:.8rem; background:linear-gradient(transparent,rgba(0,0,0,.75)); font-size:.78rem; font-weight:600; }
+  .gal .ico { position:absolute; top:50%; left:50%; transform:translate(-50%,-60%); opacity:.35; transition:.3s; }
+  .gal:hover .ico { opacity:.7; transform:translate(-50%,-60%) scale(1.15); }
+  #navbar.scrolled { background:rgba(15,23,42,.96); backdrop-filter:blur(8px); box-shadow:0 4px 20px rgba(0,0,0,.25); }
+</style>
+
+<script>
+/* ================= KONFIGURASI ================= */
+const WA_NUMBER = "6281200000000"; // GANTI: nomor WhatsApp perusahaan format 62xxxxxxxxxx (tanpa + / 0 di depan)
+const WA_DEFAULT = "Assalamu'alaikum PT Ridig Sukses Berjaya, saya ingin bertanya mengenai jam sholat digital masjid...";
+
+const waLink = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+/* ================= INIT ICONS & UMUM ================= */
+document.addEventListener('DOMContentLoaded', () => {
+  lucide.createIcons();
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Semua tombol WA
+  document.querySelectorAll('[data-wa]').forEach(a => {
+    const produk = a.dataset.produk;
+    const msg = produk
+      ? `Assalamu'alaikum PT Ridig Sukses Berjaya, saya ingin bertanya mengenai: ${produk}.`
+      : WA_DEFAULT;
+    a.href = waLink(msg);
+    a.target = "_blank"; a.rel = "noopener";
+  });
+
+  /* ---- Navbar scroll ---- */
+  const nav = document.getElementById('navbar');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---- Mobile menu ---- */
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('menuBtn');
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    btn.innerHTML = `<i data-lucide="${menu.classList.contains('hidden') ? 'menu' : 'x'}" class="w-7 h-7"></i>`;
+    lucide.createIcons();
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.add('hidden');
+    btn.innerHTML = `<i data-lucide="menu" class="w-7 h-7"></i>`; lucide.createIcons();
+  }));
+
+  /* ---- Hero clock ---- */
+  const clock = document.getElementById('heroClock'), hd = document.getElementById('heroDate');
+  const tick = () => {
+    const d = new Date();
+    clock.textContent = d.toLocaleTimeString('id-ID', { hour12: false }).replace(/\./g, ':');
+    hd.textContent = d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+  };
+  tick(); setInterval(tick, 1000);
+
+  /* ---- Reveal on scroll ---- */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } }), { threshold: .12 });
+  document.documentElement.classList.add('js');
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // Fallback: tampilkan semua konten jika observer tidak terpicu
+  setTimeout(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('show')), 2500);
+
+  /* ================= SIMULATOR RUNNING TEXT ================= */
+  const input = document.getElementById('simInput');
+  const led = document.getElementById('ledText');
+  const count = document.getElementById('simCount');
+  const speed = document.getElementById('simSpeed');
+  const speedVal = document.getElementById('simSpeedVal');
+  const simWa = document.getElementById('simWa');
+  const speedMap = { 1: ['Lambat', 16], 2: ['Sedang', 10], 3: ['Cepat', 5] };
+  const presets = [
+    "KAJIAN BA'DA MAGHRIB BERSAMA USTADZ · SABTU INI · SEMUA JAMAAH DIUNDANG",
+    "MOHON MATIKAN HP SELAMA SHOLAT BERLANGSUNG · JAZAKUMULLAHU KHAIRAN",
+    "INFAQ JUMAT UNTUK PEMBANGUNAN MASJID · REK. [ISI NOMOR REKENING]",
+    "SHOLAT JUMAT PUKUL 12.00 WIB · HARAP HADIR LEBIH AWAL",
+    "SELAMAT DATANG DI MASJID AL-IKHLAS · LURUSKAN DAN RAPATKAN SHAF"
+  ];
+  let pi = 0;
+
+  const updateSim = () => {
+    const txt = input.value.trim() || "TULIS PENGUMUMAN MASJID ANDA DI SINI";
+    led.textContent = txt.toUpperCase();
+    count.textContent = input.value.length;
+    const [label, base] = speedMap[speed.value];
+    speedVal.textContent = label;
+    // durasi disesuaikan panjang teks agar kecepatan terasa konsisten
+    const dur = Math.max(4, base * (0.5 + txt.length / 60));
+    led.style.setProperty('--dur', dur + 's');
+    led.style.animation = 'none'; void led.offsetWidth; led.style.animation = '';
+    simWa.href = waLink(`Assalamu'alaikum PT Ridig Sukses Berjaya, saya ingin memesan jam masjid running text. Teks yang ingin ditampilkan: "${txt}"`);
+    simWa.target = "_blank"; simWa.rel = "noopener";
+  };
+  input.addEventListener('input', updateSim);
+  speed.addEventListener('input', updateSim);
+  document.querySelectorAll('#colorPicker .clr').forEach(b => b.addEventListener('click', () => {
+    led.style.color = b.dataset.c;
+    document.querySelectorAll('#colorPicker .clr').forEach(x => x.classList.remove('ring-2', 'ring-white'));
+    b.classList.add('ring-2', 'ring-white');
+  }));
+  document.getElementById('simPreset').addEventListener('click', () => {
+    input.value = presets[pi++ % presets.length]; updateSim();
+  });
+  updateSim();
+
+  /* ================= KALKULATOR UKURAN ================= */
+  const data = {
+    kecil: { title: "Jam Sholat LED Compact untuk Mushola", size: "± 60 x 40 cm (Jam 7-Segment)", type: "7-Segment + Background Custom / P10 Mini", dist: "5 – 10 meter", pos: "Dinding depan atau samping mihrab",
+             desc: "Ukuran ringkas yang cukup terbaca jelas untuk ruang kecil, hemat biaya dan listrik." },
+    sedang: { title: "Jam Sholat LED Ukuran Sedang untuk Masjid 10x10 m", size: "± 100 x 60 cm", type: "7-Segment Besar / P10 Running Text", dist: "10 – 20 meter", pos: "Dinding depan, di atas atau samping mihrab",
+              desc: "Pilihan paling populer untuk masjid lingkungan, terbaca jelas hingga shaf paling belakang." },
+    besar: { title: "Jam Sholat Besar + Running Text untuk Masjid 15x15 m", size: "± 140 x 80 cm atau TV 55\"", type: "P10 Running Text Besar / Smart TV 55 inci", dist: "20 – 30 meter", pos: "Dinding depan, tinggi ± 2,5 m dari lantai",
+             desc: "Cocok untuk masjid dengan jamaah banyak. Kombinasi running text membantu penyampaian informasi." },
+    agung: { title: "Paket Premium Masjid Agung / Masjid Raya (>20x20 m)", size: "± 200 x 100 cm atau TV 65–75\" / Videotron P5 RGB", type: "P5 Full Color RGB / Smart TV Digital Signage 65–75\"", dist: "30 – 50+ meter", pos: "Dinding utama + layar tambahan di sisi atau serambi",
+             desc: "Layar besar full color, konten lengkap dan dapat dipasang lebih dari satu titik. Disarankan survei lokasi." }
+  };
+  const needText = { jws: "Fokus jadwal sholat.", running: "Dilengkapi running text untuk pengumuman.", tv: "Disarankan Smart TV JWS Controller agar kas, agenda, dan murottal dapat tampil." };
+  let selected = null;
+
+  const sizeBtns = document.querySelectorAll('.size-opt');
+  const need = document.getElementById('needSel');
+  const render = () => {
+    if (!selected) return;
+    const d = data[selected];
+    document.getElementById('resultEmpty').classList.add('hidden');
+    document.getElementById('resultBody').classList.remove('hidden');
+    document.getElementById('resultBox').classList.remove('flex');
+    let title = d.title, type = d.type;
+    if (need.value === 'tv') { type = "Smart TV JWS Controller (" + (selected === 'kecil' ? '32–43' : selected === 'sedang' ? '43–55' : selected === 'besar' ? '55–65' : '65–75') + " inci)"; }
+    if (need.value === 'running' && selected !== 'agung') { type = "P10 Running Text / P5 RGB"; }
+    document.getElementById('resTitle').textContent = title;
+    document.getElementById('resDesc').textContent = d.desc + " " + needText[need.value];
+    document.getElementById('resSize').textContent = d.size;
+    document.getElementById('resType').textContent = type;
+    document.getElementById('resDist').textContent = d.dist;
+    document.getElementById('resPos').textContent = d.pos;
+    const wa = document.getElementById('resWa');
+    wa.href = waLink(`Assalamu'alaikum PT Ridig Sukses Berjaya, saya sudah mencoba kalkulator di website. Ukuran masjid: ${sizeBtns[Object.keys(data).indexOf(selected)].querySelector('b').textContent}. Rekomendasi: ${title} (${d.size}, ${type}). Mohon penawaran harga dan informasinya.`);
+    wa.target = "_blank"; wa.rel = "noopener";
+  };
+  sizeBtns.forEach(b => b.addEventListener('click', () => {
+    selected = b.dataset.size;
+    sizeBtns.forEach(x => x.classList.remove('active')); b.classList.add('active');
+    render();
+  }));
+  need.addEventListener('change', render);
+
+  /* ================= WILAYAH RIAU ================= */
+  const riau = ["Pekanbaru","Dumai","Siak","Kampar","Bengkalis","Pelalawan","Rokan Hulu","Rokan Hilir","Indragiri Hulu","Indragiri Hilir","Kuantan Singingi","Kepulauan Meranti"];
+  const grid = document.getElementById('riauGrid');
+  riau.forEach(r => {
+    const isKota = ["Pekanbaru","Dumai"].includes(r);
+    const el = document.createElement('a');
+    el.className = 'region';
+    el.href = waLink(`Assalamu'alaikum PT Ridig Sukses Berjaya, saya dari ${isKota ? 'Kota' : 'Kabupaten'} ${r}, Riau. Saya ingin bertanya mengenai jam sholat digital masjid.`);
+    el.target = "_blank"; el.rel = "noopener";
+    el.innerHTML = `<i data-lucide="map-pin" class="w-5 h-5"></i><span>${isKota ? 'Kota' : 'Kab.'} ${r}</span>`;
+    grid.appendChild(el);
+  });
+
+  /* ================= GALERI ================= */
+  /* Untuk foto asli, ganti isi elemen .gal dengan: <img src="foto.jpg" alt="Jam sholat Masjid ..." class="absolute inset-0 w-full h-full object-cover"> */
+  const gal = [
+    ["Masjid Pekanbaru", "clock"], ["Masjid Siak", "tv"], ["Mushola Kampar", "clock"], ["Masjid Dumai", "monitor"],
+    ["Masjid Bengkalis", "clock"], ["Masjid Rokan Hulu", "tv"], ["Masjid Sumatera Barat", "monitor"], ["Masjid Jambi", "clock"]
+  ];
+  const gg = document.getElementById('galleryGrid');
+  gal.forEach(([name, ic]) => {
+    const d = document.createElement('div');
+    d.className = 'gal reveal';
+    d.innerHTML = `<i data-lucide="${ic}" class="ico w-14 h-14"></i><div class="cap">${name}<span class="block text-[10px] font-normal opacity-80">Foto pemasangan (placeholder)</span></div>`;
+    gg.appendChild(d); io.observe(d);
+  });
+
+  lucide.createIcons();
+});
+</script>
+</body>
+</html>
